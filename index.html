@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Scan once and connect with the NAHS CSHS presenters on LinkedIn in seconds." />
+    <meta name="theme-color" content="#111111" />
+    <title>NAHS CSHS | Connect With Presenters</title>
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+      :root {
+        --bg: #0c0c0d;
+        --bg-soft: #141417;
+        --surface: #18181c;
+        --surface2: #202028;
+        --border: #323239;
+        --text: #f5f7fa;
+        --muted: #b1b6c2;
+        --brand: #0a66c2;
+        --brand-d: #084f97;
+        --chip: #111f33;
+        --chip-b: #263e63;
+        --shadow: 0 14px 36px rgba(0, 0, 0, 0.34);
+      }
+
+      body {
+        background: var(--bg);
+        background-image:
+          radial-gradient(700px 300px at 10% -5%, #1d2f45 0%, rgba(29, 47, 69, 0) 60%),
+          radial-gradient(700px 300px at 90% -10%, #202734 0%, rgba(32, 39, 52, 0) 60%),
+          linear-gradient(180deg, #0a0a0c 0%, #111215 100%);
+        color: var(--text);
+        font-family: "Aptos", "Avenir Next", "Segoe UI", sans-serif;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 2.2rem 1rem 4rem;
+      }
+
+      header {
+        width: 100%;
+        max-width: 900px;
+        margin-bottom: 0.95rem;
+        background: linear-gradient(160deg, #16171e 0%, #101114 100%);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        box-shadow: var(--shadow);
+        padding: 1.2rem 1.2rem 1.25rem;
+      }
+
+      .hero-top {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 0.9rem;
+        min-width: 0;
+      }
+
+      .logo-ring {
+        display: grid;
+        place-items: center;
+        width: 76px;
+        height: 76px;
+        border-radius: 50%;
+        border: 2px solid #676b75;
+        overflow: hidden;
+        background: #0e0e11;
+        flex-shrink: 0;
+      }
+
+      .logo-ring svg {
+        width: 100%;
+        height: 100%;
+      }
+
+      .org-name {
+        font-size: 0.73rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 0.25rem;
+      }
+
+      h1 {
+        font-size: clamp(1.3rem, 4vw, 2rem);
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        line-height: 1.2;
+        margin-bottom: 0.1rem;
+      }
+
+      .subtitle {
+        margin-top: 0.35rem;
+        font-size: 0.92rem;
+        color: var(--muted);
+      }
+
+      .hero-cta {
+        display: flex;
+        gap: 0.55rem;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        min-height: 46px;
+        border-radius: 999px;
+        border: 1px solid transparent;
+        padding: 0 1rem;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.86rem;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        cursor: pointer;
+        transition: transform 140ms ease, background 140ms ease;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .btn-primary {
+        background: var(--brand);
+        color: #ffffff;
+        border-color: #3d8bd9;
+      }
+
+      .btn-primary:hover,
+      .btn-primary:focus-visible {
+        background: var(--brand-d);
+        transform: translateY(-1px);
+        outline: none;
+      }
+
+      .btn-secondary {
+        background: #161d27;
+        color: #dce9f8;
+        border-color: #33495f;
+      }
+
+      .note {
+        margin-top: 0.95rem;
+        border: 1px solid #334055;
+        background: #121a27;
+        border-radius: 12px;
+        padding: 0.62rem 0.78rem;
+        color: #c6d8ee;
+        font-size: 0.83rem;
+        line-height: 1.45;
+      }
+
+      .section-label {
+        width: 100%;
+        max-width: 900px;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin: 1.2rem 0 0.9rem;
+      }
+
+      .officers {
+        width: 100%;
+        max-width: 900px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
+
+      @media (min-width: 720px) {
+        .officers {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        overflow: hidden;
+        transition: border-color 0.15s, transform 0.15s ease;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .card:hover {
+        border-color: #4f6483;
+        transform: translateY(-2px);
+      }
+
+      .card-top {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 1.1rem 1.1rem 0;
+      }
+
+      .avatar {
+        flex-shrink: 0;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: linear-gradient(150deg, #172840, #0b121d);
+        border: 2px solid #2e4970;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        font-size: 0.95rem;
+        color: #9fcbfb;
+        letter-spacing: -0.02em;
+        overflow: hidden;
+      }
+
+      .avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+        display: block;
+      }
+
+      .avatar .initials {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+      }
+
+      .card-meta { flex: 1; min-width: 0; }
+
+      .card-name {
+        font-size: 1rem;
+        font-weight: 700;
+        line-height: 1.2;
+      }
+
+      .card-title {
+        display: inline-block;
+        margin-top: 0.35rem;
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        background: var(--chip);
+        color: #c6dcf7;
+        padding: 0.2em 0.6em;
+        border-radius: 20px;
+        border: 1px solid var(--chip-b);
+        white-space: normal;
+        word-break: break-word;
+        line-height: 1.5;
+      }
+
+      .card-bio {
+        margin: 0.85rem 1.1rem 0;
+        font-size: 0.845rem;
+        color: var(--muted);
+        line-height: 1.65;
+        flex: 1;
+      }
+
+      .card-bottom {
+        padding: 0.9rem 1.1rem 1rem;
+        display: flex;
+        justify-content: flex-end;
+        margin-top: auto;
+      }
+
+      a.li-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        text-decoration: none;
+        font-size: 0.82rem;
+        font-weight: 700;
+        color: #ffffff;
+        background: var(--brand);
+        border: 1px solid #3d8bd9;
+        border-radius: 999px;
+        min-height: 42px;
+        padding: 0.35rem 0.95rem;
+        transition: background 0.15s, border-color 0.15s;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      a.li-btn:hover, a.li-btn:focus-visible {
+        background: var(--brand-d);
+        border-color: #6ba8e6;
+        outline: none;
+      }
+
+      .li-icon {
+        width: 16px;
+        height: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.9);
+        border-radius: 3px;
+        flex-shrink: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 9px;
+        font-weight: 800;
+        line-height: 1;
+      }
+
+      .li-icon::before {
+        content: "in";
+        color: #ffffff;
+        text-transform: lowercase;
+      }
+
+      .toolbar {
+        width: 100%;
+        max-width: 900px;
+        margin-top: 0.95rem;
+        display: flex;
+        justify-content: center;
+        gap: 0.6rem;
+        flex-wrap: wrap;
+      }
+
+      .copy-all {
+        background: #171d28;
+        border: 1px solid #33495f;
+        color: #dce9f8;
+      }
+
+      .toast {
+        position: fixed;
+        left: 50%;
+        bottom: 16px;
+        transform: translate(-50%, 16px);
+        opacity: 0;
+        background: #0b121d;
+        color: #ffffff;
+        border: 1px solid #33495f;
+        border-radius: 999px;
+        padding: 0.5rem 0.9rem;
+        font-size: 0.84rem;
+        transition: opacity 0.18s ease, transform 0.18s ease;
+        z-index: 20;
+        pointer-events: none;
+      }
+
+      .toast.show {
+        opacity: 1;
+        transform: translate(-50%, 0);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        * { transition: none !important; }
+      }
+
+      @media (max-width: 480px) {
+        body { padding: 1.3rem 0.75rem 3rem; }
+        .hero-top { flex-direction: column; align-items: flex-start; }
+        .officers { grid-template-columns: 1fr; }
+        .card-top { gap: 0.75rem; padding: 1rem 1rem 0; }
+        .card-bio { margin: 0.75rem 1rem 0; }
+        .card-bottom { padding: 0.75rem 1rem 0.9rem; }
+        a.li-btn { width: 100%; justify-content: center; }
+        .btn { width: 100%; }
+        .avatar { width: 42px; height: 42px; font-size: 0.85rem; }
+      }
+    </style>
+  </head>
+  <body>
+
+    <header>
+      <div class="hero-top">
+        <div class="brand">
+          <div class="logo-ring" aria-label="NA monogram logo">
+            <svg viewBox="0 0 120 120" role="img" aria-label="North Atlanta monogram">
+              <circle cx="60" cy="60" r="58" fill="#0e0e10" stroke="#70737c" stroke-width="3" />
+              <text x="29" y="61" fill="#f6f8fb" font-size="62" font-family="Georgia, Times New Roman, serif"
+  font-weight="700">N</text>
+              <text x="50" y="95" fill="#f6f8fb" font-size="62" font-family="Georgia, Times New Roman, serif"
+  font-weight="700">A</text>
+            </svg>
+          </div>
+          <div>
+            <p class="org-name">NAHS CSHS</p>
+            <h1>Connect With Our Officers</h1>
+            <p class="subtitle">North Atlanta Computer Science Honor Society</p>
+          </div>
+        </div>
+        <div class="hero-cta">
+          <button id="sharePage" class="btn btn-primary" type="button">Share Page</button>
+          <a class="btn btn-secondary" href="#team">Start Connecting</a>
+        </div>
+      </div>
+      <p class="note">Fastest flow: tap LinkedIn, send connect, hit back, and continue to the next officer.</p>
+    </header>
+
+    <p id="team" class="section-label">2025 – 2026 Leadership Team</p>
+
+    <main class="officers">
+
+      <!-- ── Ahmad Farooq ── -->
+      <div class="card">
+        <div class="card-top">
+          <div class="avatar">
+            <img src="images/ahmad.jpg" alt="Ahmad Farooq" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+            <span class="initials" style="display:none">AF</span>
+          </div>
+          <div class="card-meta">
+            <div class="card-name">Ahmad Farooq</div>
+            <span class="card-title">Founder &amp; President</span>
+          </div>
+        </div>
+        <p class="card-bio"><!-- REPLACE with Ahmad's real bio --></p>
+        <div class="card-bottom">
+          <a class="li-btn" href="https://www.linkedin.com/in/ahmad-farooq-877a5026a/" target="_blank" rel="noopener noreferrer">
+            <span class="li-icon"></span> LinkedIn
+          </a>
+        </div>
+      </div>
+
+      <!-- ── Ryan Agbobli-Dougno ── -->
+      <div class="card">
+        <div class="card-top">
+          <div class="avatar">
+            <img src="images/ryan.jpg" alt="Ryan Agbobli-Dougno" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+            <span class="initials" style="display:none">RA</span>
+          </div>
+          <div class="card-meta">
+            <div class="card-name">Ryan Agbobli-Dougno</div>
+            <span class="card-title">Head Secretary &amp; Public Relations</span>
+          </div>
+        </div>
+        <p class="card-bio"><!-- REPLACE with Ryan's real bio --></p>
+        <div class="card-bottom">
+          <a class="li-btn" href="https://www.linkedin.com/in/ryan-e-agbobli-29658236b/" target="_blank" rel="noopener noreferrer">
+            <span class="li-icon"></span> LinkedIn
+          </a>
+        </div>
+      </div>
+
+      <!-- ── Nasir Branton ── -->
+      <div class="card">
+        <div class="card-top">
+          <div class="avatar">
+            <img src="images/nasir.jpg" alt="Nasir Branton" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+            <span class="initials" style="display:none">NB</span>
+          </div>
+          <div class="card-meta">
+            <div class="card-name">Nasir Branton</div>
+            <span class="card-title">Head Software &amp; Web Developer</span>
+          </div>
+        </div>
+        <p class="card-bio"><!-- REPLACE with Nasir's real bio --></p>
+        <div class="card-bottom">
+          <a class="li-btn" href="https://www.linkedin.com/in/nasir-branton-a630033b1/" target="_blank" rel="noopener noreferrer">
+            <span class="li-icon"></span> LinkedIn
+          </a>
+        </div>
+      </div>
+
+      <!-- ── Aidan Burris ── -->
+      <div class="card">
+        <div class="card-top">
+          <div class="avatar">
+            <img src="images/aidan.jpg" alt="Aidan Burris" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+            <span class="initials" style="display:none">AB</span>
+          </div>
+          <div class="card-meta">
+            <div class="card-name">Aidan Burris</div>
+            <span class="card-title">Co-President</span>
+          </div>
+        </div>
+        <p class="card-bio"><!-- REPLACE with Aidan's real bio --></p>
+        <div class="card-bottom">
+          <a class="li-btn" href="https://www.linkedin.com/in/aidan-burris-4b2669373/" target="_blank" rel="noopener noreferrer">
+            <span class="li-icon"></span> LinkedIn
+          </a>
+        </div>
+      </div>
+
+      <!-- ── Colt Cushman ── -->
+      <div class="card">
+        <div class="card-top">
+          <div class="avatar">
+            <img src="images/colt.jpg" alt="Colt Cushman" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+            <span class="initials" style="display:none">CC</span>
+          </div>
+          <div class="card-meta">
+            <div class="card-name">Colt Cushman</div>
+            <span class="card-title">Social Media Manager</span>
+          </div>
+        </div>
+        <p class="card-bio"><!-- REPLACE with Colt's real bio --></p>
+        <div class="card-bottom">
+          <a class="li-btn" href="https://www.linkedin.com/in/colt-cushman-3905ab37a/" target="_blank" rel="noopener noreferrer">
+            <span class="li-icon"></span> LinkedIn
+          </a>
+        </div>
+      </div>
+
+      <!-- ── Nate Laing ── -->
+      <div class="card">
+        <div class="card-top">
+          <div class="avatar">
+            <img src="images/nate.jpg" alt="Nate Laing" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+            <span class="initials" style="display:none">NL</span>
+          </div>
+          <div class="card-meta">
+            <div class="card-name">Nate Laing</div>
+            <span class="card-title">Co-President</span>
+          </div>
+        </div>
+        <p class="card-bio"><!-- REPLACE with Nate's real bio --></p>
+        <div class="card-bottom">
+          <a class="li-btn" href="https://www.linkedin.com/in/placeholder-nate" target="_blank" rel="noopener noreferrer">
+            <span class="li-icon"></span> LinkedIn
+          </a>
+        </div>
+      </div>
+
+    </main>
+
+    <section class="toolbar" aria-label="Quick actions">
+      <button id="copyAll" class="btn copy-all" type="button">Copy All LinkedIn Links</button>
+    </section>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <script>
+      const toast = document.getElementById("toast");
+      const sharePageBtn = document.getElementById("sharePage");
+      const copyAllBtn = document.getElementById("copyAll");
+      const linkedInLinks = Array.from(document.querySelectorAll("a.li-btn")).map((a) => a.href);
+
+      function showToast(message) {
+        toast.textContent = message;
+        toast.classList.add("show");
+        clearTimeout(showToast.timer);
+        showToast.timer = setTimeout(() => toast.classList.remove("show"), 1800);
+      }
+
+      async function copyText(text, successMessage) {
+        try {
+          await navigator.clipboard.writeText(text);
+          showToast(successMessage);
+        } catch {
+          showToast("Copy failed. Please copy manually.");
+        }
+      }
+
+      sharePageBtn.addEventListener("click", async () => {
+        const pageUrl = window.location.href;
+        if (navigator.share) {
+          try {
+            await navigator.share({ title: "Connect with NAHS CSHS Officers", text: "All officer LinkedIns in one page",
+   url: pageUrl });
+            return;
+          } catch {}
+        }
+        copyText(pageUrl, "Page link copied");
+      });
+
+      copyAllBtn.addEventListener("click", () => copyText(linkedInLinks.join("\n"), "All LinkedIn links copied"));
+    </script>
+
+  </body>
+  </html>
